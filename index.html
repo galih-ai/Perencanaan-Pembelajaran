@@ -1,89 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <title>Perencanaan Pembelajaran</title>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="apple-touch-icon" href="favicon.png">
-
+  <title>Perencanaan Pembelajaran</title>
   <style>
-    body, html {
+    html, body {
       margin: 0;
-      padding: 0;
       width: 100%;
       height: 100%;
       overflow: hidden;
       font-family: Arial, sans-serif;
-      background-color: #f4f4f9;
+      background: #f4f4f9;
     }
 
-    /* Tampilan halaman depan */
     #landing-page {
       display: flex;
+      height: 100%;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100%;
       text-align: center;
     }
 
-    /* Gaya tombol */
     button {
-      background-color: #4285F4;
-      color: white;
+      background: #4285f4;
+      color: #fff;
+      border: 0;
+      border-radius: 8px;
       padding: 15px 30px;
       font-size: 18px;
-      border: none;
-      border-radius: 8px;
+      font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: background-color 0.3s;
     }
 
-    button:hover {
-      background-color: #3367D6;
+    button:active {
+      transform: translateY(1px);
+      filter: brightness(.92);
     }
 
-    /* Iframe disembunyikan pada awal halaman */
     iframe {
       display: none;
       width: 100%;
       height: 100%;
-      border: none;
+      border: 0;
     }
   </style>
 </head>
-
 <body>
-
   <div id="landing-page">
     <h2>Selamat Datang</h2>
     <p>di Perencanaan Pembelajaran</p>
-
-    <button type="button" onclick="bukaAplikasi()">
-      Buka Aplikasi
-    </button>
+    <button type="button" onclick="bukaAplikasi()">Buka Aplikasi</button>
   </div>
 
-  <iframe
-    id="app-frame"
-    src="https://script.google.com/macros/s/AKfycbxcq-bGFoAM9xdifJZ7rYvxouUkDr2r-5MvSo3E6MRmzoXVw4w21yTVHY6bJYL46BvR/exec"
-    title="Perencanaan Pembelajaran">
-  </iframe>
+  <iframe id="app-frame" title="Perencanaan Pembelajaran"></iframe>
 
   <script>
+    const APP_URL = 'https://script.google.com/macros/s/AKfycbxcq-bGFoAM9xdifJZ7rYvxouUkDr2r-5MvSo3E6MRmzoXVw4w21yTVHY6bJYL46BvR/exec';
+
     function bukaAplikasi() {
+      const token = new URLSearchParams(window.location.search).get('token');
+
+      if (!token) {
+        alert('Akses aplikasi harus dibuka melalui landing page.');
+        return;
+      }
+
       const landing = document.getElementById('landing-page');
       const iframe = document.getElementById('app-frame');
 
-      // Sembunyikan halaman pembuka
+      iframe.src = APP_URL + '?token=' + encodeURIComponent(token);
       landing.style.display = 'none';
-
-      // Tampilkan aplikasi tanpa masuk ke mode layar penuh
       iframe.style.display = 'block';
     }
   </script>
-
 </body>
 </html>
