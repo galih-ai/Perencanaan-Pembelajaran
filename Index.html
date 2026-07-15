@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Perencanaan Pembelajaran</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+    }
+
+    /* Tampilan halaman depan */
+    #landing-page {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      text-align: center;
+    }
+
+    /* Gaya tombol */
+    button {
+      background-color: #4285F4;
+      color: white;
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #3367D6;
+    }
+
+    /* Iframe disembunyikan pada awal halaman */
+    iframe {
+      display: none;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="landing-page">
+    <h2>Selamat Datang</h2>
+    <p>di Perencanaan Pembelajaran</p>
+
+    <button type="button" onclick="bukaAplikasi()">
+      Buka Aplikasi
+    </button>
+  </div>
+
+  <iframe
+    id="app-frame"
+    src="https://script.google.com/macros/s/AKfycbxcq-bGFoAM9xdifJZ7rYvxouUkDr2r-5MvSo3E6MRmzoXVw4w21yTVHY6bJYL46BvR/exec"
+    title="Perencanaan Pembelajaran">
+  </iframe>
+
+  <script>
+    function bukaAplikasi() {
+      const landing = document.getElementById('landing-page');
+      const iframe = document.getElementById('app-frame');
+
+      // Sembunyikan halaman pembuka
+      landing.style.display = 'none';
+
+      // Tampilkan aplikasi tanpa masuk ke mode layar penuh
+      iframe.style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
